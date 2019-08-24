@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">kotlin</string>
+    <string name="no_connection">Please check your internet connection</string>
+</resources>
