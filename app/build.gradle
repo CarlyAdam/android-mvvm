@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -54,9 +56,12 @@ dependencies {
 
     implementation "com.github.d-max:spots-dialog:$rootProject.spotdialog"
     implementation "com.squareup.picasso:picasso:$rootProject.picasso"
+
     //room
-    implementation "android.arch.persistence.room:runtime:$rootProject.room"
-    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.room"
+    implementation "androidx.room:room-runtime:$rootProject.room"
+    implementation "androidx.room:room-ktx:$rootProject.room"
+    kapt "androidx.room:room-compiler:$rootProject.room"
+
     implementation "de.hdodenhof:circleimageview:$rootProject.circleimage"
     //acra
     implementation "ch.acra:acra:$rootProject.acra"

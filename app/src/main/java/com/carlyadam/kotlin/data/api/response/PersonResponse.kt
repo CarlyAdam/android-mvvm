@@ -1,7 +1,7 @@
 package com.carlyadam.kotlin.data.api.response
 
-import com.carlyadam.kotlin.data.api.model.PersonPojo
+import com.carlyadam.kotlin.data.db.Person
 
 data class PersonResponse(
-    var person : List<PersonPojo>?
+    var person : List<Person>?
 )

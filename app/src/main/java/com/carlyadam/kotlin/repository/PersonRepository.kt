@@ -4,38 +4,39 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.carlyadam.kotlin.data.api.model.ApiService
-import com.carlyadam.kotlin.data.api.model.PersonPojo
 import com.carlyadam.kotlin.data.db.AppDatabase
+import com.carlyadam.kotlin.data.db.Person
+import com.carlyadam.kotlin.utilities.Coroutines
+import com.carlyadam.kotlin.viewmodel.PersonViewModelFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.koin.android.ext.android.inject
 
 /**
  * Repository module for handling data operations.
  */
 class PersonRepository(
-    private val api: ApiService
-   // private val db: AppDatabase
+    private val api: ApiService,
+    private val db: AppDatabase
 
 ) {
 
-    private val personList = ArrayList<PersonPojo>()
 
-     //fun getPersonsDB() = db.personDao().getPersons()
-    suspend fun getPersons(): MutableLiveData<List<PersonPojo>> {
-        withContext(Dispatchers.IO) {
+    private val personList = ArrayList<Person>()
+
+    suspend fun getPersons(): LiveData<List<Person>> {
+        return withContext(Dispatchers.IO) {
             fetchPersons()
+            db.personDao().getPersons()
         }
-        val data = MutableLiveData<List<PersonPojo>>()
-        data.setValue(personList)
-        return data
     }
 
-
-    suspend fun fetchPersons(){
+    private suspend fun fetchPersons() {
         try {
             val response = api.getPerson()
             if (response.isSuccessful) {
                 personList.addAll(response.body()!!.person!!)
+                saveQuotes(personList)
             } else {
                 Log.i("ERRRRRor", response.message())
             }
@@ -43,8 +44,12 @@ class PersonRepository(
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
 
-
+    private fun saveQuotes(persons: List<Person>) {
+        Coroutines.io {
+            db.personDao().insertAll(persons)
+        }
     }
 
 }

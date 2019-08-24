@@ -27,7 +27,7 @@ buildscript {
         spotdialog = '1.1@aar'
         picasso = '2.71828'
         acra = '4.9.2'
-        room = '1.1.1'
+        room = '2.2.0-beta01'
         circleimage = '3.0.0'
         acra = '4.9.2'
         lottie = '3.0.7'

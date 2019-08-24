@@ -1,5 +1,6 @@
 package com.carlyadam.kotlin.ui
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,38 +12,40 @@ import com.carlyadam.kotlin.viewmodel.PersonViewModel
 import com.carlyadam.kotlin.viewmodel.PersonViewModelFactory
 import androidx.core.app.NotificationCompat.getCategory
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.carlyadam.kotlin.data.api.model.PersonPojo
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.carlyadam.kotlin.ui.adapter.RecyclerAdapter
+import com.carlyadam.kotlin.data.db.Person
+import com.carlyadam.kotlin.ui.adapter.PersonAdapter
+import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity()  {
 
     private lateinit var personViewModel: PersonViewModel
-    private val personList = ArrayList<PersonPojo>()
+    private val personList = ArrayList<Person>()
+    var dialog: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        dataStore.displayToast()
+        dialog = SpotsDialog.Builder().setContext(this).build()
         personViewModel = ViewModelProviders.of(this, personViewModelFactory).get(PersonViewModel::class.java)
-        bindUI()
+        setData()
 
     }
-    private fun bindUI() = Coroutines.main {
-         personViewModel!!.getPerson().observe(this, Observer {
+    private fun setData() = Coroutines.main {
+        dialog!!.show()
+         personViewModel.getPerson().observe(this, Observer {
              personList.addAll(it)
              initRecyclerView()
+             dialog!!.dismiss()
         })
 
     }
-
-
     private fun initRecyclerView() {
         recycler.layoutManager = LinearLayoutManager(this)
-        recycler.adapter = RecyclerAdapter(personList, this)
+        recycler.adapter = PersonAdapter(personList, this)
     }
+
 
 
 }

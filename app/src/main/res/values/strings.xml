@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">kotlin</string>
     <string name="no_connection">Please check your internet connection</string>
+    <string name="crash_text">Ups , please send us the error to fix it, thanks ;)</string>
 </resources>

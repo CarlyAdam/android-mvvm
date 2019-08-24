@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.carlyadam.kotlin.R
-import com.carlyadam.kotlin.data.api.model.PersonPojo
+import com.carlyadam.kotlin.data.db.Person
 
-class RecyclerAdapter(var person_list: List<PersonPojo>, var mContext: Context) :
-    RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class PersonAdapter(var person_list: List<Person>, var mContext: Context) :
+    RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(mContext)
