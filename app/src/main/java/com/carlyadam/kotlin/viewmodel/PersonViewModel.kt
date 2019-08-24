@@ -9,8 +9,9 @@ class PersonViewModel(
   var personRepository: PersonRepository
 ) : ViewModel() {
 
-    suspend fun getPerson(): LiveData<PersonPojo> {
-        return  personRepository.getPersons()
+
+    suspend fun getPerson(): LiveData<List<PersonPojo>> {
+        return personRepository.getPersons()
     }
 
 

@@ -18,22 +18,24 @@ class PersonRepository(
 
 ) {
 
-    private val person = MutableLiveData<PersonPojo>()
+    private val personList = ArrayList<PersonPojo>()
 
      //fun getPersonsDB() = db.personDao().getPersons()
-
-    suspend fun getPersons(): LiveData<PersonPojo> {
-        return withContext(Dispatchers.IO) {
+    suspend fun getPersons(): MutableLiveData<List<PersonPojo>> {
+        withContext(Dispatchers.IO) {
             fetchPersons()
-
         }
+        val data = MutableLiveData<List<PersonPojo>>()
+        data.setValue(personList)
+        return data
     }
 
-    suspend fun fetchPersons(): LiveData<PersonPojo> {
+
+    suspend fun fetchPersons(){
         try {
             val response = api.getPerson()
             if (response.isSuccessful) {
-                person.postValue(response.body()!!.person)
+                personList.addAll(response.body()!!.person!!)
             } else {
                 Log.i("ERRRRRor", response.message())
             }
@@ -42,7 +44,6 @@ class PersonRepository(
             e.printStackTrace()
         }
 
-        return person
 
     }
 
