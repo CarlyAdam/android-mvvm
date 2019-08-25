@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.carlyadam.kotlin.R
@@ -18,8 +19,7 @@ import com.carlyadam.kotlin.ui.adapter.PersonAdapter
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity()  {
-
+class MainActivity : BaseActivity() ,PersonAdapter.AdapterListener {
     private lateinit var personViewModel: PersonViewModel
     private val personList = ArrayList<Person>()
     var dialog: AlertDialog? = null
@@ -43,7 +43,11 @@ class MainActivity : BaseActivity()  {
     }
     private fun initRecyclerView() {
         recycler.layoutManager = LinearLayoutManager(this)
-        recycler.adapter = PersonAdapter(personList, this)
+        recycler.adapter = PersonAdapter(personList, this,this)
+    }
+
+    override fun onItemTap(position: Int) {
+       Toast.makeText(this,personList.get(position).name,Toast.LENGTH_SHORT).show()
     }
 
 

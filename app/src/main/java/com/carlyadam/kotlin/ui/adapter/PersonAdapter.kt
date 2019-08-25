@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.carlyadam.kotlin.R
 import com.carlyadam.kotlin.data.db.Person
 
-class PersonAdapter(var person_list: List<Person>, var mContext: Context) :
+class PersonAdapter(var person_list: List<Person>, var mContext: Context, var listener: AdapterListener) :
     RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,6 +23,9 @@ class PersonAdapter(var person_list: List<Person>, var mContext: Context) :
         val person = person_list[position]
 
         holder.name.text = person.name
+        holder.constraintLayout.setOnClickListener(View.OnClickListener {
+            listener.onItemTap(position)
+        })
     }
 
     override fun getItemCount(): Int {
@@ -31,8 +35,13 @@ class PersonAdapter(var person_list: List<Person>, var mContext: Context) :
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val name: TextView = itemView.findViewById(R.id.textView)
+        val constraintLayout: ConstraintLayout = itemView.findViewById(R.id.constraintLayout_item)
 
 
+    }
+
+    interface AdapterListener{
+        fun onItemTap(position: Int)
     }
 }
 

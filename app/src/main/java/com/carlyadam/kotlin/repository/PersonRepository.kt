@@ -35,7 +35,7 @@ class PersonRepository(
         try {
             val response = api.getPerson()
             if (response.isSuccessful) {
-                personList.addAll(response.body()!!.person!!)
+                personList.addAll(response.body()!!.persons!!)
                 saveQuotes(personList)
             } else {
                 Log.i("ERRRRRor", response.message())
