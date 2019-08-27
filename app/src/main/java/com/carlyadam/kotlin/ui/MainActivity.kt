@@ -20,7 +20,6 @@ import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() ,PersonAdapter.AdapterListener {
-    private lateinit var personViewModel: PersonViewModel
     private val personList = ArrayList<Person>()
     var dialog: AlertDialog? = null
 
@@ -28,7 +27,6 @@ class MainActivity : BaseActivity() ,PersonAdapter.AdapterListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         dialog = SpotsDialog.Builder().setContext(this).build()
-        personViewModel = ViewModelProviders.of(this, personViewModelFactory).get(PersonViewModel::class.java)
         setData()
 
     }
