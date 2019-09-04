@@ -12,7 +12,6 @@ class PersonViewModel(
         return personRepository.getPersons()
     }
 
-
 }
 
 

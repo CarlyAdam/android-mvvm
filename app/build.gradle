@@ -43,14 +43,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
     implementation "com.google.code.gson:gson:$rootProject.gson"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.convertergson"
-    //test
-    testImplementation "junit:junit:$rootProject.junit"
-    androidTestImplementation "androidx.test:runner:$rootProject.runner"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.expressocore"
-    testImplementation("com.squareup.okhttp3:mockwebserver:$rootProject.mockwebserver")
-    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coretesting"
-
-    //  //Kotlin Coroutines
+    //Kotlin Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
 
@@ -59,7 +52,7 @@ dependencies {
 
     //room
     implementation "androidx.room:room-runtime:$rootProject.room"
-    implementation "androidx.room:room-ktx:$rootProject.room"
+    //implementation 'androidx.room:room-ktx:2.1.0'
     kapt "androidx.room:room-compiler:$rootProject.room"
 
     implementation "de.hdodenhof:circleimageview:$rootProject.circleimage"
@@ -74,4 +67,13 @@ dependencies {
     implementation "org.koin:koin-androidx-scope:$koin_version"
     // Koin AndroidX ViewModel features
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    //test
+    testImplementation "junit:junit:$rootProject.junit"
+    androidTestImplementation "androidx.test:runner:$rootProject.runner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.expressocore"
+    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coretesting"
+
+    //testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+    testImplementation "io.mockk:mockk:1.9.3"
 }

@@ -31,7 +31,7 @@ class PersonRepository(
         }
     }
 
-    private suspend fun fetchPersons() {
+     private suspend fun fetchPersons() {
         try {
             val response = api.getPerson()
             if (response.isSuccessful) {
@@ -46,7 +46,7 @@ class PersonRepository(
         }
     }
 
-    private fun saveQuotes(persons: List<Person>) {
+     private fun saveQuotes(persons: List<Person>) {
         Coroutines.io {
             db.personDao().insertAll(persons)
         }

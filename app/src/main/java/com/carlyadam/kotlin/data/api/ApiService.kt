@@ -12,7 +12,7 @@ import retrofit2.http.GET
 
 interface ApiService {
 
-    @GET("ryu6b")
+    @GET("ryu6b.json")
     suspend fun getPerson(): Response<PersonResponse>
 
     companion object {
