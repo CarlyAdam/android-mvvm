@@ -21,7 +21,6 @@ class PersonRepository(
 
 ) {
 
-
     private val personList = ArrayList<Person>()
 
     suspend fun getPersons(): LiveData<List<Person>> {
@@ -46,7 +45,7 @@ class PersonRepository(
         }
     }
 
-     private fun saveQuotes(persons: List<Person>) {
+     fun saveQuotes(persons: List<Person>) {
         Coroutines.io {
             db.personDao().insertAll(persons)
         }

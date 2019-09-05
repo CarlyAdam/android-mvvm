@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.carlyadam.kotlin.R
 import com.carlyadam.kotlin.data.db.Person
@@ -20,12 +19,14 @@ class PersonAdapter(var person_list: List<Person>, var mContext: Context, var li
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val person = person_list[position]
 
-        holder.name.text = person.name
-        holder.constraintLayout.setOnClickListener(View.OnClickListener {
-            listener.onItemTap(position)
-        })
+        when (holder) {
+
+            is ViewHolder -> {
+                holder.bind(person_list[position])
+            }
+
+        }
     }
 
     override fun getItemCount(): Int {
@@ -34,14 +35,16 @@ class PersonAdapter(var person_list: List<Person>, var mContext: Context, var li
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val name: TextView = itemView.findViewById(R.id.textView)
-        val constraintLayout: ConstraintLayout = itemView.findViewById(R.id.constraintLayout_item)
+        val name: TextView = itemView.findViewById(R.id.textViewName)
+        fun bind(person: Person) {
+            name.text = person.name
 
-
+        }
     }
 
-    interface AdapterListener{
+    interface AdapterListener {
         fun onItemTap(position: Int)
     }
+
 }
 
