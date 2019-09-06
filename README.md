@@ -1,6 +1,6 @@
 ### Features
 ```
-MVVM Arquitecture + Clean Arquitecture
+MVVM Arquitecture + Kotlin
 AndroidX
 Retrofit
 ROOM
