@@ -6,4 +6,6 @@ Retrofit
 ROOM
 Coroutines
 KOIN for DI
+Mockk
+Ktlint
 ```

@@ -18,7 +18,7 @@ class MainActivity : BaseActivity(), PersonAdapter.AdapterListener {
 
     private lateinit var dataBinding: ActivityMainBinding
     private val personList = ArrayList<Person>()
-    var dialog: AlertDialog? = null
+    private var dialog: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +47,7 @@ class MainActivity : BaseActivity(), PersonAdapter.AdapterListener {
     }
 
     override fun onItemTap(position: Int) {
-        Toast.makeText(this, personList.get(position).name, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, personList[position].name, Toast.LENGTH_SHORT).show()
     }
 
 
