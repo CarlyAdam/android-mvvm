@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.carlyadam.kotlin.R
 import com.carlyadam.kotlin.data.db.Person
 
@@ -39,6 +40,10 @@ class PersonAdapter(var person_list: List<Person>, var mContext: Context, var li
         fun bind(person: Person) {
             name.text = person.name
 
+            //glide
+           /* Glide.with(mContext)
+                .load(url)
+                .into(imageView);*/
         }
     }
 
