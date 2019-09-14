@@ -3,12 +3,10 @@ package com.carlyadam.kotlin.ui
 import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.carlyadam.kotlin.R
 import com.carlyadam.kotlin.data.db.Person
-import com.carlyadam.kotlin.databinding.ActivityMainBinding
 import com.carlyadam.kotlin.ui.adapter.PersonAdapter
 import com.carlyadam.kotlin.utilities.Coroutines
 import dmax.dialog.SpotsDialog
@@ -16,17 +14,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), PersonAdapter.AdapterListener {
 
-    private lateinit var dataBinding: ActivityMainBinding
     private val personList = ArrayList<Person>()
     private var dialog: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dataBinding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        setContentView( R.layout.activity_main)
         dialog = SpotsDialog.Builder().setContext(this).build()
         setData()
-        dataBinding.lifecycleOwner = this
-        dataBinding.viewModel = personViewModel
 
     }
 
