@@ -6,7 +6,7 @@
 * [Material Design](https://developer.android.com/guide/topics/ui/look-and-feel)
 * [AndroidX](https://developer.android.com/jetpack/androidx)
 * [Retrofit](https://github.com/square/retrofit)
-* [Gson](https://github.com/google/gson)p
+* [Gson](https://github.com/google/gson)
 * [Glide](https://github.com/bumptech/glide)
 * [Acra](https://github.com/ACRA/acra)
 * [Room](https://developer.android.com/topic/libraries/architecture/room)
