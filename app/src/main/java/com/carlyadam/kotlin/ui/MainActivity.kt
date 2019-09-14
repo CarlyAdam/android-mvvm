@@ -5,21 +5,22 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.carlyadam.kotlin.R
 import com.carlyadam.kotlin.data.db.Person
+import com.carlyadam.kotlin.databinding.ActivityMainBinding
 import com.carlyadam.kotlin.ui.adapter.PersonAdapter
 import com.carlyadam.kotlin.utilities.Coroutines
 import dmax.dialog.SpotsDialog
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), PersonAdapter.AdapterListener {
 
     private val personList = ArrayList<Person>()
     private var dialog: AlertDialog? = null
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView( R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         dialog = SpotsDialog.Builder().setContext(this).build()
         setData()
 
@@ -36,8 +37,8 @@ class MainActivity : BaseActivity(), PersonAdapter.AdapterListener {
     }
 
     private fun initRecyclerView() {
-        recycler.layoutManager = LinearLayoutManager(this)
-        recycler.adapter = PersonAdapter(personList, this, this)
+        binding.recycler.layoutManager = LinearLayoutManager(this)
+        binding.recycler.adapter = PersonAdapter(personList, this, this)
 
     }
 

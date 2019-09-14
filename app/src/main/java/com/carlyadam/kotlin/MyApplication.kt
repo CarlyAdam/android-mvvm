@@ -2,6 +2,7 @@ package com.carlyadam.kotlin
 
 import android.app.Application
 import com.carlyadam.kotlin.di.AppModule
+import org.acra.ACRA
 import org.acra.ReportingInteractionMode
 import org.acra.annotation.ReportsCrashes
 import org.koin.android.ext.koin.androidContext
@@ -21,7 +22,7 @@ import org.koin.core.context.startKoin
                 // modules
                 modules(AppModule.myModule)
             }
-            //ACRA.init(this)
+            ACRA.init(this)
         }
 
 
